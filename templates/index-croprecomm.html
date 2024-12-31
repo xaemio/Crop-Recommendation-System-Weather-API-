@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Recommendation</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="style-apy.css">
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
+        h1 {
+            color: mediumseagreen;
+            text-align: center;
+        }
+
+        .warning {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .card {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20px;
+            color: rgb(9, 9, 9);
+            width: 18rem;
+        }
+
+        .container {
+            background: #edf2f7;
+            font-weight: bold;
+            padding-bottom: 10px;
+            border-radius: 15px;
+        }
+
+        body {
+            background: #BCBBB8;
+        }
+
+        #navbar {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        #navbar li {
+            margin: 0 10px;
+        }
+
+        #navbar a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #000;
+        }
+
+        #navbar a.active {
+            color: mediumseagreen;
+        }
+        #header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:20px 80px;
+    background: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+    z-index: 999;
+    position: sticky;
+    top:0;
+    left:0;
+    font-family: "Spartan", sans-serif;
+}
+#navbar{
+    display: flex;
+    align-items: centre;
+    justify-content: center;
+}
+
+#navbar li{
+    list-style: none;
+    padding: 0 20px;
+    position: relative;
+}
+
+#navbar li a{
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a1a;
+    transition: 0.3s ease;
+}
+
+#navbar li a:hover{
+    color:green;
+}
+
+#navbar li a.active{
+    color: green;
+}
+
+#navbar li a.active::after,
+#navbar li a:hover::after{
+    content:"";
+    width: 30%;
+    height: 2px;
+    background: green;
+    position: absolute;
+    bottom:-4px;
+    left:20px;
+}
+    </style>
+</head>
+<body>
+    <section id="header">
+        <a href="#"><img src="https://designlooter.com/images/crops-svg-1.png" class="logo" height="150" width="150"></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="http://127.0.0.1:5500/index.html">Home</a></li>
+                <li><a href="weather.html">Weather</a></li>
+                <li><a class="active" href="http://127.0.0.1:5000">Crop Recommendation</a></li>
+    
+            </ul>
+        </div>
+    </section>
+
+    <div class="container my-1 mt-1">
+        <form action="/predict" method="POST">
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="Nitrogen">Nitrogen</label>
+                    <input type="number" id="Nitrogen" name="Nitrogen" placeholder="Enter Nitrogen" class="form-control" required step="0">
+                </div>
+                <div class="col-md-4">
+                    <label for="Phosporus">Phosphorus</label>
+                    <input type="number" id="Phosporus" name="Phosporus" placeholder="Enter Phosphorus" class="form-control" required step="0">
+                </div>
+                <div class="col-md-4">
+                    <label for="Potassium">Potassium</label>
+                    <input type="number" id="Potassium" name="Potassium" placeholder="Enter Potassium" class="form-control" required step="0">
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <label for="Temperature">Temperature</label>
+                    <input type="number" step="0.01" id="Temperature" name="Temperature" placeholder="Enter Temperature in °C" class="form-control" required step="0">
+                </div>
+                <div class="col-md-4">
+                    <label for="Humidity">Humidity</label>
+                    <input type="number" step="0.01" id="Humidity" name="Humidity" placeholder="Enter Humidity in %" class="form-control" required step="0">
+                </div>
+                <div class="col-md-4">
+                    <label for="pH">pH</label>
+                    <input type="number" step="0.01" id="Ph" name="Ph" placeholder="Enter pH value" class="form-control" required step="0">
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <label for="Rainfall">Rainfall</label>
+                    <input type="number" step="0.01" id="Rainfall" name="Rainfall" placeholder="Enter Rainfall in mm" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-12 text-center">
+                    <button type="submit" class="btn btn-primary btn-lg">Get Recommendation</button>
+                </div>
+            </div>
+        </form>
+        {% if result %}
+        <div class="card" bg-dark>
+            <div class="card-body">
+                <h5 class="card-title">Recommend Crop for cultivation is:</h5>
+                <p class="card-text">{{ result }}</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+</body>
+</html>

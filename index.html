@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriAlly-Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+   
+</head>
+<body>
+    <section id="header">
+        <a href="#"><img src="https://designlooter.com/images/crops-svg-1.png" class="logo" height="150" width="150"></a>
+        <ul id="navbar">
+            <li><a class="active" href="index.html">Home</a></li>
+            <li><a href="weather.html">Weather</a></li>
+            <li><a href="http://127.0.0.1:8080">Crop Recommendation</a></li>
+        </ul>
+    </div>
+    </section>
+    <section id="hero">
+        <h1>WELCOME TO AGRI-ALLY!</h3>
+        <h3>Empowering Farmers, Enriching Fields!</h2>
+        <h2>Get Information, Prices, Weather Updates and MORE</h2>
+    </section>
+    <div class="container">
+        <div class="whats-new">
+            <h2>What's New?</h2>
+            <ul class="news-list">
+                <li><a href="#">Compendium on Artificial Intelligence</a></li>
+                <li><a href="#">Filling up one (01) post of Member(Official) in the commision for Agricultural Costs and Prices </a></li>
+                <li><a href="#">Annual Report 2023-2024</a></li>
+                <li><a href="#">Minimum Support prices</a></li>
+                <li><a href="#">Draft of National Policy on Farmer Producer Organizations</a></li>
+                <li><a href="#">G20 Outcome documents</a></li>
+                <li><a href="#">Framework for voluntary carbon market in agricultural sector</a></li>
+                <li><a href="#">Accreditation Protocol for Agroforestry Nurseries</a></li>
+                <li><a href="#">PM kisan bhai scheme</a></li>
+            </ul>
+        </div>
+       
+        <div class="carousel">
+            <button class="carousel-arrow left-arrow">&lt;</button>
+            <div class="carousel-card active">
+                <h2>Farmer's News</h2>
+                <p>Ministry of Agriculture & Farmers’ Welfare organized the National Conference on Implementing Digital Public Infrastructure under the Digital Agriculture Mission.</p>
+                <div class="download-section">
+                    <a href="#">Download (70 KB)</a>
+                    <p class="publish-date">Publish Date: 25-09-2024</p>
+                </div>
+            </div>
+
+            <div class="carousel-card">
+                <h2>Farmer's News</h2>
+                <p>Agriculture department launched new policies to enhance crop growth and digital infrastructure.</p>
+                <div class="download-section">
+                    <a href="#">Download (120 KB)</a>
+                    <p class="publish-date">Publish Date: 01-10-2024</p>
+                </div>
+            </div>
+
+            <div class="carousel-card">
+                <h2>Farmer's News</h2>
+                <p>New subsidies have been introduced for organic farming and sustainable agriculture practices.</p>
+                <div class="download-section">
+                    <a href="#">Download (90 KB)</a>
+                    <p class="publish-date">Publish Date: 15-10-2024</p>
+                </div>
+            </div>
+            <button class="carousel-arrow right-arrow">&gt;</button>
+        </div>
+    </div>
+
+    <footer class="section-p1">
+        <div class="col">
+            <h4>Contact</h4>
+            <br>
+            <p><strong>Address: </strong>St. 562 Wellington Road, Street 32, Mumbai</p>
+            <p><strong>Phone: </strong>+01 2222 365 / (+91) 01 2345 6789</p>
+            <p><strong>Hours: </strong>10:00-18:00, Mon-Sat</p>
+            <div class="follow">
+                <h4>Follow us</h4>
+                <div class="icon">
+                   <i class="fab fa-facebook-f"></i>
+                   <i class="fab fa-twitter"></i>
+                   <i class="fab fa-instagram"></i>
+                   <i class="fab fa-pinterest-p"></i>
+                   <i class="fab fa-youtube"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h4>About</h4>
+            <br>
+            <a href="#">About us</a>
+            <a href="#">Delivery Information</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms and Conditions</a>
+            <a href="#">Contact Us</a>
+        </div>
+
+        <div class="col">
+            <h4>My Account</h4>
+            <br>
+            <a href="#">Sign In</a>
+            <a href="#">View Cart</a>
+            <a href="#">My Wishlist</a>
+            <a href="#">Track My order</a>
+            <a href="#">Help</a>
+        </div>
+
+    </footer>
+    <div class="copyright">
+        <p>@ 2024, Agri- Ally- Saumya, 23355</p>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const cards = document.querySelectorAll('.carousel-card');
+
+        function showCard(index) {
+        cards.forEach((card, i) => {
+            card.classList.remove('active');
+            card.style.opacity = 0; // Hide all cards
+            if (i === index) {
+                card.classList.add('active');
+                card.style.opacity = 1; // Show active card
+            }
+        });
+    }
+
+    function showNextCard() {
+        currentIndex = (currentIndex + 1) % cards.length;
+        showCard(currentIndex);
+    }
+
+    function showPrevCard() {
+        currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+        showCard(currentIndex);
+    }
+
+    document.querySelector('.right-arrow').addEventListener('click', showNextCard);
+    document.querySelector('.left-arrow').addEventListener('click', showPrevCard);
+
+
+    setInterval(showNextCard, 5000);
+    </script>
+</body>
+</html>
+
+
